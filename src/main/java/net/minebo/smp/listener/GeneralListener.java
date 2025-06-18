@@ -26,8 +26,11 @@ public class GeneralListener implements Listener {
         Player player = event.getPlayer();
         event.setJoinMessage(null);
 
-        player.sendMessage(ChatColor.DARK_PURPLE + "Welcome, " + ChatColor.LIGHT_PURPLE + player.getName() + ChatColor.DARK_PURPLE + " to " + ChatColor.LIGHT_PURPLE + "MCRaidz" + ChatColor.DARK_PURPLE + "!");
-        player.sendMessage(ChatColor.YELLOW + "This is our " + ChatColor.GOLD + NumberFormatting.addSuffix(1) + ChatColor.YELLOW + " map, which started on " + ChatColor.GOLD + "3/17/2025" + ChatColor.YELLOW + "!");
+        if(!player.hasPlayedBefore()) {
+            Bukkit.getOnlinePlayers().forEach(p -> { p.sendMessage(player.getName() + ChatColor.GREEN + " has joined for the first time! " + ChatColor.GRAY + "(" + ChatColor.WHITE + "#" + ProfileManager.profiles.size() + ChatColor.GRAY + ")"); });
+        }
+
+        player.sendMessage(ChatColor.GREEN + "Welcome, " + ChatColor.WHITE + player.getName() + ChatColor.GREEN + " to " + ChatColor.GOLD + "MCRaidz" + ChatColor.GREEN + "!");
 
         if(TeamManager.getTeamByPlayer(player) != null){
             Team team = TeamManager.getTeamByPlayer(player);
