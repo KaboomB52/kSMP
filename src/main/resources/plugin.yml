@@ -1,0 +1,7 @@
+name: kSMP
+version: '1.0-DEV'
+description: "A fork of MCRaidz for an SMP implementation."
+authors: ["Ian Rich", "Revity Studios"]
+main: net.minebo.smp.MCRaidz
+soft-depend: ["PlaceholderAPI"]
+api-version: '1.20'

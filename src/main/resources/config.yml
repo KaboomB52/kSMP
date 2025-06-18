@@ -1,0 +1,9 @@
+server-name: "mcraidz"
+
+scoreboard:
+  title: "&d&lMCRaidz &a[Map 1]"
+  url: "&eminebo.net"
+
+mongo:
+  uri: "mongodb://localhost:27017"
+  database: "MCRaidz"
