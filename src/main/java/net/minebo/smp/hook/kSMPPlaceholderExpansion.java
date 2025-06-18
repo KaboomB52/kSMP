@@ -69,15 +69,6 @@ public class kSMPPlaceholderExpansion extends PlaceholderExpansion implements Re
         Team targetFaction = TeamManager.getTeamByPlayer(target);
 
         if (targetFaction == null) {
-
-            if(ProfileManager.getProfileByPlayer(target) != null) {
-                Profile profile = ProfileManager.getProfileByPlayer(target);
-
-                if(profile.hasSpawnProtection()){
-                    return "&e";
-                }
-            }
-
             return "&c";
         }
 

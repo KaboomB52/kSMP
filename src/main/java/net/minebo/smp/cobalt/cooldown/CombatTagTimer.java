@@ -36,8 +36,6 @@ public class CombatTagTimer extends Cooldown {
         Player victim = (Player) e.getEntity();
         Player attacker = (Player) e.getDamager();
 
-        if(ProfileManager.getProfileByPlayer(victim).hasSpawnProtection() || ProfileManager.getProfileByPlayer(attacker).hasSpawnProtection()) return;
-
         applyCooldown(victim, 30, TimeUnit.SECONDS, kSMP.instance);
         applyCooldown(attacker, 30, TimeUnit.SECONDS, kSMP.instance);
     }

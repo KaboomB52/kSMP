@@ -103,7 +103,7 @@ public class ClassListener implements Listener {
             if (var12 instanceof Player damager) {
                 Entity var13 = event.getEntity();
                 if (var13 instanceof Player player) {
-                    if (ProfileManager.getProfileByPlayer(player).hasSpawnProtection() || !ClassManager.activeClass.containsKey(damager.getUniqueId()) || ClassManager.activeClass.get(damager.getUniqueId()) != ClassType.ARCHER || ClassManager.activeClass.containsKey(player.getUniqueId()) && ClassManager.activeClass.get(player.getUniqueId()) == ClassType.ARCHER || player == damager) {
+                    if (!ClassManager.activeClass.containsKey(damager.getUniqueId()) || ClassManager.activeClass.get(damager.getUniqueId()) != ClassType.ARCHER || ClassManager.activeClass.containsKey(player.getUniqueId()) && ClassManager.activeClass.get(player.getUniqueId()) == ClassType.ARCHER || player == damager) {
                         return;
                     }
 
@@ -277,10 +277,6 @@ public class ClassListener implements Listener {
         if(Arrays.stream(bardEffects).noneMatch(m -> m == player.getInventory().getItemInMainHand().getType())) {
             return;
         }
-        if (ProfileManager.getProfileByPlayer(player).hasSpawnProtection()) {
-            player.sendMessage(ChatColor.RED + "You cannot use bard effects while spawn protected.");
-            return;
-        }
         var bardCooldown = kSMP.cooldownHandler.getCooldown("Bard Effect");
         if (bardCooldown.onCooldown(player)) {
             player.sendMessage(ChatColor.RED + "You cannot use another bard effect for " + bardCooldown.getRemaining(player) + '.');
@@ -435,8 +431,6 @@ public class ClassListener implements Listener {
                     for (Entity entity : player.getNearbyEntities(20, 20, 20)) {
                         if (!(entity instanceof Player targetPlayer)) continue;
                         // Don't hit spawn-protected or teammates
-                        if (ProfileManager.getProfileByPlayer(targetPlayer).hasSpawnProtection())
-                            continue;
                         if (team != null && team.getOnlineMembers().contains(targetPlayer))
                             continue;
                         targetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 240, 1));

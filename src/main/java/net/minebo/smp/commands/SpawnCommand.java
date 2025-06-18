@@ -35,11 +35,6 @@ public class SpawnCommand extends BaseCommand {
                 player.setFoodLevel(20);
                 player.setSaturation(20);
 
-                if(!profile.hasSpawnProtection()) {
-                    profile.spawnProtection = true;
-                    player.sendMessage(ChatColor.GREEN + "Your spawn protection has been enabled.");
-                }
-
                 return;
             }
 
