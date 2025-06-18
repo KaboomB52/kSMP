@@ -2,10 +2,6 @@ package net.minebo.smp.listener;
 
 import net.minebo.cobalt.cooldown.construct.Cooldown;
 import net.minebo.cobalt.util.format.NumberFormatting;
-import net.minebo.kregions.KRegions;
-import net.minebo.kregions.manager.FlagManager;
-import net.minebo.kregions.manager.RegionManager;
-import net.minebo.kregions.model.Region;
 import net.minebo.smp.kSMP;
 import net.minebo.smp.profile.ProfileManager;
 import net.minebo.smp.profile.construct.Profile;
@@ -74,7 +70,6 @@ public class GeneralListener implements Listener {
             Player player = e.getPlayer();
 
             e.setRespawnLocation(Bukkit.getWorld("world").getSpawnLocation());
-            profile.spawnProtection = true;
 
         }
 
