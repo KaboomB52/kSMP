@@ -30,7 +30,7 @@ public class GeneralListener implements Listener {
             Bukkit.getOnlinePlayers().forEach(p -> { p.sendMessage(player.getName() + ChatColor.GREEN + " has joined for the first time! " + ChatColor.GRAY + "(" + ChatColor.WHITE + "#" + ProfileManager.profiles.size() + ChatColor.GRAY + ")"); });
         }
 
-        player.sendMessage(ChatColor.GREEN + "Welcome, " + ChatColor.WHITE + player.getName() + ChatColor.GREEN + " to " + ChatColor.GOLD + "MCRaidz" + ChatColor.GREEN + "!");
+        player.sendMessage(ChatColor.GREEN + "Welcome, " + ChatColor.WHITE + player.getName() + ChatColor.GREEN + " to " + ChatColor.DARK_GREEN + "Survival" + ChatColor.GREEN + "!");
 
         if(TeamManager.getTeamByPlayer(player) != null){
             Team team = TeamManager.getTeamByPlayer(player);
