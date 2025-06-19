@@ -39,7 +39,7 @@ public class ClassListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getType() == Material.DIAMOND_ORE) {
+        if (event.getBlock().getType() == Material.DIAMOND_ORE || event.getBlock().getType() == Material.DEEPSLATE_DIAMOND_ORE) {
             Player player = event.getPlayer();
             Block block = event.getBlock();
             Profile profile = ProfileManager.getProfileByUUID(player.getUniqueId());
