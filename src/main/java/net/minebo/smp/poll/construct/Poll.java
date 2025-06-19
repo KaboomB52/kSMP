@@ -1,6 +1,5 @@
 package net.minebo.smp.poll.construct;
 
-import mkremins.fanciful.FancyMessage;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -52,7 +51,7 @@ public class Poll {
     }
 
     public void startPoll() {
-        Bukkit.broadcastMessage(sender.getDisplayName() + ChatColor.YELLOW + " has started a poll to " + ChatColor.GOLD + type.description + ". " + ChatColor.YELLOW + "Use " + ChatColor.GOLD + "/vote " + ChatColor.YELLOW + "or click one of the " + ChatColor.GOLD + "buttons " + ChatColor.YELLOW + " to voice your opinions. " + getVoteButtonsMessage());
+        Bukkit.broadcastMessage(sender.getDisplayName() + ChatColor.YELLOW + " has started a poll to " + ChatColor.GOLD + type.description + ". " + ChatColor.YELLOW + "Use " + ChatColor.GOLD + "/vote " + ChatColor.YELLOW + "or click one of the " + ChatColor.GOLD + "buttons " + ChatColor.YELLOW + " to voice your opinions. " + getVoteButtonsMessage().asComponent());
 
         BukkitTask taskid = new BukkitRunnable() {
 
