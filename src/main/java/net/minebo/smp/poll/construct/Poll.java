@@ -34,8 +34,16 @@ public class Poll {
         this.votedPlayers = new ArrayList<Player>();
     }
 
-    public static Component getVoteButtonsMessage() {
+    public static Component getPollMessage(Player sender, PollType pollType) {
         return Component.text()
+                .append(Component.text(sender.getDisplayName() + " ", NamedTextColor.WHITE))
+                .append(Component.text("has started a poll to ", NamedTextColor.YELLOW))
+                .append(Component.text(pollType.description + ". ", NamedTextColor.GOLD))
+                .append(Component.text("Use ", NamedTextColor.YELLOW))
+                .append(Component.text("/vote ", NamedTextColor.GOLD))
+                .append(Component.text("or click one of the ", NamedTextColor.YELLOW))
+                .append(Component.text("buttons ", NamedTextColor.GOLD))
+                .append(Component.text("to voice your opinions. ", NamedTextColor.YELLOW))
                 .append(
                         Component.text("[Yes]", NamedTextColor.GREEN, TextDecoration.BOLD)
                                 .hoverEvent(HoverEvent.showText(Component.text("Click to vote yes!", NamedTextColor.GREEN)))
@@ -51,7 +59,7 @@ public class Poll {
     }
 
     public void startPoll() {
-        Bukkit.broadcastMessage(sender.getDisplayName() + ChatColor.YELLOW + " has started a poll to " + ChatColor.GOLD + type.description + ". " + ChatColor.YELLOW + "Use " + ChatColor.GOLD + "/vote " + ChatColor.YELLOW + "or click one of the " + ChatColor.GOLD + "buttons " + ChatColor.YELLOW + " to voice your opinions. " + getVoteButtonsMessage().asComponent());
+        Bukkit.getOnlinePlayers().forEach(p -> p.sendMessage(getPollMessage(sender, type)));
 
         BukkitTask taskid = new BukkitRunnable() {
 
