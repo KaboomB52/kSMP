@@ -17,6 +17,7 @@ import net.minebo.smp.cobalt.cooldown.EnderPearlCooldown;
 import net.minebo.smp.hook.kSMPPlaceholderExpansion;
 import net.minebo.smp.listener.*;
 import net.minebo.smp.mongo.MongoManager;
+import net.minebo.smp.poll.PollManager;
 import net.minebo.smp.profile.ProfileManager;
 import net.minebo.smp.recipe.RecipeManager;
 import net.minebo.smp.server.ServerHandler;
@@ -99,6 +100,7 @@ public final class kSMP extends JavaPlugin {
         ShopManager.init();
         RecipeManager.init();
         ClassManager.init();
+        PollManager.init();
     }
 
 }
