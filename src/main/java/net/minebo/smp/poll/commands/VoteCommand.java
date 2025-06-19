@@ -16,7 +16,7 @@ public class VoteCommand extends BaseCommand {
 
     @Default
     @Syntax("<yes|no>")
-    @CommandCompletion("yes|no")
+    @CommandCompletion("no|yes")
     public void VoteCommand(CommandSender sender, String vote) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
