@@ -1,7 +1,10 @@
 package net.minebo.smp.listener;
 
+import me.lianecx.discordlinker.DiscordLinker;
+import me.lianecx.discordlinker.network.ChatType;
 import net.minebo.smp.team.TeamManager;
 import net.minebo.smp.team.construct.Team;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,6 +31,11 @@ public class ChatFormatListener implements Listener {
                     factionTag + tag + prefix + player.getName() + "&7: &f" + event.getMessage());
             viewer.sendMessage(formatted);
         });
+
+        if(Bukkit.getPluginManager().getPlugin("Discord-Linker").isEnabled()){
+            DiscordLinker.getPlugin().getServer().getScheduler().runTaskAsynchronously(DiscordLinker.getPlugin(), () ->
+                    DiscordLinker.getAdapterManager().chat(event.getMessage(), ChatType.CHAT, event.getPlayer().getName()));
+        }
 
     }
 

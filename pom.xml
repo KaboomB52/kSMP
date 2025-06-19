@@ -101,5 +101,13 @@
             <version>2.11.6</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Because im lazy -->
+        <dependency>
+            <groupId>com.github.MC-Linker</groupId>
+            <artifactId>Discord-Linker</artifactId>
+            <version>3.5.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/library/Discord-Linker-3.5.1.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
