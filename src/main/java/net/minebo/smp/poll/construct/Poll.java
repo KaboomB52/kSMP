@@ -61,13 +61,7 @@ public class Poll {
                     this.cancel();
                 }
 
-                switch (seconds) {
-                    case 45 -> Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + "45" + ChatColor.YELLOW + " seconds left to vote!");
-                    case 30 -> Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + "30" + ChatColor.YELLOW + " seconds left to vote!");
-                    case 15 -> Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + "15" + ChatColor.YELLOW + " seconds left to vote!");
-                    case 10 -> Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + "10" + ChatColor.YELLOW + " seconds left to vote!");
-                }
-
+                if(seconds % 15 == 0) Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + seconds + ChatColor.YELLOW + " seconds left to vote!");
                 if(seconds < 10 && seconds != 0) Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + seconds + ChatColor.YELLOW + " seconds left to vote!");
 
                 seconds--;
@@ -85,11 +79,11 @@ public class Poll {
 
         if(vote) {
             player.sendMessage(ChatColor.YELLOW + "You have voted " + ChatColor.GREEN + "yes" + ChatColor.YELLOW + " to " + type.description + ".");
-            Bukkit.getOnlinePlayers().stream().filter(p -> p != player).forEach(p -> p.sendMessage(player.getDisplayName() + ChatColor.WHITE + " has voted " + ChatColor.GREEN + "yes" + ChatColor.WHITE + " to " + type.description + "."));
+            Bukkit.getOnlinePlayers().stream().filter(p -> p != player).forEach(p -> p.sendMessage(player.getDisplayName() + ChatColor.YELLOW + " has voted " + ChatColor.GREEN + "yes" + ChatColor.YELLOW + " to " + type.description + "."));
             playersFor++;
         } else {
             player.sendMessage(ChatColor.YELLOW + "You have voted " + ChatColor.RED + "no" + ChatColor.YELLOW + " to " + type.description + ".");
-            Bukkit.getOnlinePlayers().stream().filter(p -> p != player).forEach(p -> p.sendMessage(player.getDisplayName() + ChatColor.WHITE + " has voted " + ChatColor.RED + "no" + ChatColor.WHITE + " to " + type.description + "."));
+            Bukkit.getOnlinePlayers().stream().filter(p -> p != player).forEach(p -> p.sendMessage(player.getDisplayName() + ChatColor.YELLOW + " has voted " + ChatColor.RED + "no" + ChatColor.YELLOW + " to " + type.description + "."));
             playersAgainst++;
         }
 
