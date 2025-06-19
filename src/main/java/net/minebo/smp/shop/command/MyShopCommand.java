@@ -6,9 +6,7 @@ import co.aikar.commands.annotation.Optional;
 import net.minebo.smp.shop.ShopManager;
 import net.minebo.smp.shop.construct.ShopItem;
 import net.minebo.smp.util.BedrockUtil;
-import net.minebo.smp.util.ItemUtil;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.*;

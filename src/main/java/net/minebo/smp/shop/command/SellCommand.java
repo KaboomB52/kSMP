@@ -2,6 +2,7 @@ package net.minebo.smp.shop.command;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.Default;
 import co.aikar.commands.annotation.Syntax;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
@@ -16,6 +17,7 @@ public class SellCommand extends BaseCommand {
 
     @Default
     @Syntax("<price>")
+    @CommandCompletion("@materials")
     public void onSell(Player player, double price) {
 
         // Get the item the player is holding

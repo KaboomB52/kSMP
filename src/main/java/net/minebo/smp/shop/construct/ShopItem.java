@@ -2,9 +2,8 @@ package net.minebo.smp.shop.construct;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import net.minebo.cobalt.util.ItemUtil;
 import net.minebo.smp.shop.ShopManager;
-import net.minebo.smp.util.ItemUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
