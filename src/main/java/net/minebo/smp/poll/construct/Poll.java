@@ -1,5 +1,11 @@
 package net.minebo.smp.poll.construct;
 
+import mkremins.fanciful.FancyMessage;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.minebo.smp.kSMP;
 import net.minebo.smp.poll.PollManager;
 import org.bukkit.Bukkit;
@@ -29,8 +35,24 @@ public class Poll {
         this.votedPlayers = new ArrayList<Player>();
     }
 
+    public static Component getVoteButtonsMessage() {
+        return Component.text()
+                .append(
+                        Component.text("[Yes]", NamedTextColor.GREEN, TextDecoration.BOLD)
+                                .hoverEvent(HoverEvent.showText(Component.text("Click to vote yes!", NamedTextColor.GREEN)))
+                                .clickEvent(ClickEvent.runCommand("/vote yes"))
+                )
+                .append(Component.space())
+                .append(
+                        Component.text("[No]", NamedTextColor.RED, TextDecoration.BOLD)
+                                .hoverEvent(HoverEvent.showText(Component.text("Click to vote no!", NamedTextColor.RED)))
+                                .clickEvent(ClickEvent.runCommand("/vote no"))
+                )
+                .build();
+    }
+
     public void startPoll() {
-        Bukkit.broadcastMessage(sender.getDisplayName() + ChatColor.YELLOW + " has started a poll to " + type.description + ".");
+        Bukkit.broadcastMessage(sender.getDisplayName() + ChatColor.YELLOW + " has started a poll to " + ChatColor.GOLD + type.description + ". " + ChatColor.YELLOW + "Use " + ChatColor.GOLD + "/vote " + ChatColor.YELLOW + "or click one of the " + ChatColor.GOLD + "buttons " + ChatColor.YELLOW + " to voice your opinions. " + getVoteButtonsMessage());
 
         BukkitTask taskid = new BukkitRunnable() {
 
@@ -41,28 +63,30 @@ public class Poll {
 
                 if(votedPlayers.size() == Bukkit.getOnlinePlayers().size()) {
                     if(playersFor > playersAgainst) {
-                        Bukkit.broadcastMessage(ChatColor.GOLD + "All players " + ChatColor.YELLOW + "have voted " + ChatColor.GREEN + "yes " + ChatColor.YELLOW + "to " + type.description + ".");
+                        Bukkit.broadcastMessage(ChatColor.GOLD + "All players " + ChatColor.YELLOW + "have voted " + ChatColor.GREEN + "yes " + ChatColor.YELLOW + "to " + ChatColor.GOLD + type.description + ChatColor.YELLOW + ".");
                         type.onApproved();
                     } else {
-                        Bukkit.broadcastMessage(ChatColor.GOLD + "All players " + ChatColor.YELLOW + "have voted " + ChatColor.RED + "no " + ChatColor.YELLOW + "to " + type.description + ".");
+                        Bukkit.broadcastMessage(ChatColor.GOLD + "All players " + ChatColor.YELLOW + "have voted " + ChatColor.RED + "no " + ChatColor.YELLOW + "to " + ChatColor.GOLD + type.description + ChatColor.YELLOW + ".");
                     }
                     PollManager.activePoll = null;
                     this.cancel();
+                    return;
                 }
 
                 if(seconds == 0){
                     if(playersFor > playersAgainst) {
-                        Bukkit.broadcastMessage(ChatColor.GOLD.toString() + playersFor + " players " + ChatColor.YELLOW + "have voted " + ChatColor.GREEN + "yes " + ChatColor.YELLOW + "to " + type.description + ".");
+                        Bukkit.broadcastMessage(ChatColor.GOLD.toString() + playersFor + " players " + ChatColor.YELLOW + "have voted " + ChatColor.GREEN + "yes " + ChatColor.YELLOW + "to " + ChatColor.GOLD + type.description + ChatColor.YELLOW + ".");
                         type.onApproved();
                     } else {
-                        Bukkit.broadcastMessage(ChatColor.GOLD.toString() + playersAgainst + " players " + ChatColor.YELLOW + "have voted " + ChatColor.RED + "no " + ChatColor.YELLOW + "to " + type.description + ".");
+                        Bukkit.broadcastMessage(ChatColor.GOLD.toString() + playersAgainst + " players " + ChatColor.YELLOW + "have voted " + ChatColor.RED + "no " + ChatColor.YELLOW + "to " + ChatColor.GOLD + type.description + ChatColor.YELLOW + ".");
                     }
                     PollManager.activePoll = null;
                     this.cancel();
+                    return;
                 }
 
                 if(seconds % 15 == 0) Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + seconds + ChatColor.YELLOW + " seconds left to vote!");
-                if(seconds < 10 && seconds != 0) Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + seconds + ChatColor.YELLOW + " seconds left to vote!");
+                if(seconds <= 10 && seconds != 0) Bukkit.broadcastMessage(ChatColor.YELLOW + "There are " + ChatColor.GOLD + seconds + ChatColor.YELLOW + " seconds left to vote!");
 
                 seconds--;
 
@@ -78,12 +102,12 @@ public class Poll {
         }
 
         if(vote) {
-            player.sendMessage(ChatColor.YELLOW + "You have voted " + ChatColor.GREEN + "yes" + ChatColor.YELLOW + " to " + type.description + ".");
-            Bukkit.getOnlinePlayers().stream().filter(p -> p != player).forEach(p -> p.sendMessage(player.getDisplayName() + ChatColor.YELLOW + " has voted " + ChatColor.GREEN + "yes" + ChatColor.YELLOW + " to " + type.description + "."));
+            player.sendMessage(ChatColor.YELLOW + "You have voted " + ChatColor.GREEN + "yes" + ChatColor.YELLOW + " to " + ChatColor.GOLD + type.description + ChatColor.YELLOW + ".");
+            Bukkit.getOnlinePlayers().stream().filter(p -> p != player).forEach(p -> p.sendMessage(player.getDisplayName() + ChatColor.YELLOW + " has voted " + ChatColor.GREEN + "yes" + ChatColor.YELLOW + " to " + ChatColor.GOLD + type.description + ChatColor.YELLOW + "."));
             playersFor++;
         } else {
-            player.sendMessage(ChatColor.YELLOW + "You have voted " + ChatColor.RED + "no" + ChatColor.YELLOW + " to " + type.description + ".");
-            Bukkit.getOnlinePlayers().stream().filter(p -> p != player).forEach(p -> p.sendMessage(player.getDisplayName() + ChatColor.YELLOW + " has voted " + ChatColor.RED + "no" + ChatColor.YELLOW + " to " + type.description + "."));
+            player.sendMessage(ChatColor.YELLOW + "You have voted " + ChatColor.RED + "no" + ChatColor.YELLOW + " to " + ChatColor.GOLD + type.description + ChatColor.YELLOW + ".");
+            Bukkit.getOnlinePlayers().stream().filter(p -> p != player).forEach(p -> p.sendMessage(player.getDisplayName() + ChatColor.YELLOW + " has voted " + ChatColor.RED + "no" + ChatColor.YELLOW + " to " + ChatColor.GOLD + type.description + ChatColor.YELLOW + "."));
             playersAgainst++;
         }
 

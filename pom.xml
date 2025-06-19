@@ -84,12 +84,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.kaboomb52</groupId>
-            <artifactId>fanciful</artifactId>
-            <version>0.4.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>net.minebo</groupId>
             <artifactId>cobalt</artifactId>
             <version>1.0-DEV</version>
